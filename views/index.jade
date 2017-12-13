@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1= title
+  div
+    p.row
+      b.three.columns Ready: &nbsp;
+      span.four.columns= resp.ready
+    p.row
+      b.three.columns Total peers: &nbsp;
+      span.four.columns= resp.totalPeers
+    p.row
+      b.three.columns Connected peers: &nbsp;
+      span.four.columns= resp.connectedPeers.length
+    ul
+      each peer in resp.connectedPeers
+        li
+          b= peer.hostname
