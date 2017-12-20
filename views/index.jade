@@ -1,18 +1,35 @@
 extends layout
 
 block content
-  h1= title
+  div
+    h1= title
+    div#loading
   div
     p.row
       b.three.columns Ready: &nbsp;
-      span.four.columns= resp.ready
+      span.four.columns#ready= resp.ready
     p.row
       b.three.columns Total peers: &nbsp;
-      span.four.columns= resp.totalPeers
+      span.four.columns#totalPeers= resp.totalPeers
     p.row
       b.three.columns Connected peers: &nbsp;
-      span.four.columns= resp.connectedPeers.length
-    ul
+      span.four.columns#connectedPeers= resp.connectedPeers.length
+    p.row
+      b.three.columns Current Epoch: &nbsp;
+      span.four.columns#currentEpoch= resp.heart.currentEpoch
+    p.row
+      b.three.columns Current Cycle: &nbsp;
+      span.four.columns#currentCycle= resp.heart.currentCycle
+    table#nodeData
+      thead
+        tr
+          th= "Hostname"
+          th= "weight"
+          th= "trusted"
+          th= "seen"
       each peer in resp.connectedPeers
-        li
-          b= peer.hostname
+        tr
+          td= peer.hostname
+          td= peer.weight
+          td= peer.isTrusted
+          td= peer.seen
